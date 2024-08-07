@@ -1,5 +1,5 @@
 .backgroundImage {
-    background-image: url('/pizzeria_mamma_mia/public/img/pizzeria_img.jpg');
+    background-image: url('../header/img/pizzeria_img.jpg');
     width: 100%;
     height: 20rem;
     background-size: cover;
