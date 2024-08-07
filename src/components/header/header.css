@@ -1,0 +1,10 @@
+.backgroundImage {
+    background-image: url('./img/pizzeria_img.jpg');
+    width: 100%;
+    height: 20rem;
+    background-size: cover;
+}
+
+.fontColor { color: white;
+    text-align: center;
+}

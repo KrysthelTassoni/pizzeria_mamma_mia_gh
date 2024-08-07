@@ -1,0 +1,10 @@
+.cardHeight {
+    max-height: 190px;
+    background-size: cover;
+    min-height: 150px;
+  }
+  
+  .Text { display: flex;
+    justify-content:space-around;
+  
+  }
