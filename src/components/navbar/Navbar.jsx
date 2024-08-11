@@ -18,8 +18,8 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            {" "}
-            Pizzería Mamma Mia!{" "}
+            
+            Pizzería Mamma Mia!
           </a>
           <button
             className="navbar-toggler"

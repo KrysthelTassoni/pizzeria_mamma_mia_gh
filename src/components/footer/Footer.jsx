@@ -1,16 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
+import './footer.css';
 
 const Footer = () => {
   return (
-    <div className="p-3 mb-2 bg-dark text-light d-flex justify-content-center">
-      <p>
-        {" "}
-        <FontAwesomeIcon icon={faCopyright} /> 2024 - Pizzeria Mamma Mia! Todos
-        los derechos reservados{" "}
-      </p>
-    </div>
+    <footer className="footer bg-dark text-light text-center py-3">
+      <div className="container">
+        <p className="mb-0">
+          <FontAwesomeIcon icon={faCopyright} /> 2024 - Pizzería Mamma Mia! - Todos los derechos reservados
+        </p>
+      </div>
+    </footer>
   );
 };
 
