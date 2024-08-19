@@ -35,7 +35,7 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <button type="button" class="btn btn-outline-secondary btn-sm ">
+                <button type="button" className="btn btn-outline-secondary btn-sm ">
                   <span
                     className="nav-link active"
                     aria-current="page"
@@ -50,7 +50,7 @@ const Navbar = () => {
                   <li className="nav-item">
                     <button
                       type="button"
-                      class="btn btn-outline-secondary btn-sm ms-2"
+                      className="btn btn-outline-secondary btn-sm ms-2"
                     >
                       <span className="nav-link" href="#">
                         <FontAwesomeIcon icon={faUser} />
@@ -61,7 +61,7 @@ const Navbar = () => {
                   <li className="nav-item">
                     <button
                       type="button"
-                      class="btn btn-outline-secondary btn-sm ms-2"
+                      className="btn btn-outline-secondary btn-sm ms-2"
                       onClick={(e) => setStatus(!token)}
                     >
                       <span className="nav-link" href="#">
@@ -76,7 +76,7 @@ const Navbar = () => {
                   <li className="nav-item">
                     <button
                       type="button"
-                      class="btn btn-outline-secondary btn-sm ms-2"
+                      className="btn btn-outline-secondary btn-sm ms-2"
                       onClick={(e) => setStatus(!token)}
                     >
                       <span className="nav-link" href="#">
@@ -88,7 +88,7 @@ const Navbar = () => {
                   <li className="nav-item">
                     <button
                       type="button"
-                      class="btn btn-outline-secondary btn-sm ms-2"
+                      className="btn btn-outline-secondary btn-sm ms-2"
                     >
                       <span className="nav-link" href="#">
                         <FontAwesomeIcon icon={faUserPen} />

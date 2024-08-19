@@ -1,44 +1,24 @@
 import React from "react";
 import CardPizza from "../card/CardPizza";
 
-const Gallery = () => {
+const Gallery = ({ pizzas }) => {
   return (
-    <div>
-      <div className="container">
-        <div className="row my-4">
-          <div className=" col-xs-12 col-md-4">
+    <div className="container">
+      <div className="row my-4">
+        {pizzas.map((pizza) => (
+          <div className="col-md-4 mt-4" key={pizza.id}>
             <CardPizza
-              name="Pizza Napolitana"
-              ingredients={["mozzarella", "tomates", "jamón", "orégano"]}
-              price={5950}
-              image={"./img/napolitana.jpeg"}
+              name={pizza.name}
+              ingredients={pizza.ingredients}
+              price={pizza.price}
+              image={pizza.img}
             />
           </div>
-          <div className=" col-xs-12 col-md-4">
-            <CardPizza
-              name="Pizza Española"
-              ingredients={[
-                "mozzarella",
-                "gorgonzola",
-                "parmesano",
-                "provolone",
-              ]}
-              price={6950}
-              image={"./img/espanola.jpg"}
-            />
-          </div>
-          <div className=" col-xs-12 col-md-4">
-            <CardPizza
-              name="Pizza Pepperoni"
-              ingredients={["mozzarella", "pepperoni", "orégano"]}
-              price={6950}
-              image={"./img/pepperoni.webp"}
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default Gallery;
+
