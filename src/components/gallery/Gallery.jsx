@@ -2,6 +2,7 @@ import React from "react";
 import CardPizza from "../card/CardPizza";
 
 const Gallery = ({ pizzas }) => {
+  
   return (
     <div className="container">
       <div className="row my-4">
