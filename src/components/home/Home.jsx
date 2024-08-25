@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import Header from "../header/Header";
 import Gallery from "../gallery/Gallery";
-import pizzas from "../../data/pizza"; 
+//import pizzas from "../../data/pizza"; 
 
 const Home = () => {
+  const [ pizzas, setPizza]= useState ([]);
+  const obtenerInformacion= async () => {
+    const respuesta= await fetch ("http://localhost:5000/api/pizzas")
+    const data= await respuesta.json ();
+    setPizza (data)
+  };
+
+  useEffect (()=>{
+    obtenerInformacion ();
+  }, [] ) 
+  
+
   return (
     <div>
       <Header />
