@@ -8,19 +8,19 @@ import {
   faUserPen,
   faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const total = 25000;
-  const [token, setStatus] = useState(false);
+  const total = 25000; // Total del carrito
+  const [token, setStatus] = useState(false); // Estado de autenticación
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            
+          <Link className="navbar-brand" to="/">
             Pizzería Mamma Mia!
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -33,16 +33,15 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <button type="button" className="btn btn-outline-secondary btn-sm ">
-                  <span
-                    className="nav-link active"
-                    aria-current="page"
-                    href="#"
-                  >
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm"
+                >
+                  <Link to="/" className="nav-link active">
                     <FontAwesomeIcon icon={faPizzaSlice} /> Home
-                  </span>
+                  </Link>
                 </button>
               </li>
               {token ? (
@@ -52,21 +51,19 @@ const Navbar = () => {
                       type="button"
                       className="btn btn-outline-secondary btn-sm ms-2"
                     >
-                      <span className="nav-link" href="#">
-                        <FontAwesomeIcon icon={faUser} />
-                        Profile
-                      </span>
+                      <Link to="/profile" className="nav-link">
+                        <FontAwesomeIcon icon={faUser} /> Profile
+                      </Link>
                     </button>
                   </li>
                   <li className="nav-item">
                     <button
                       type="button"
                       className="btn btn-outline-secondary btn-sm ms-2"
-                      onClick={(e) => setStatus(!token)}
+                      onClick={() => setStatus(!token)}
                     >
-                      <span className="nav-link" href="#">
-                        <FontAwesomeIcon icon={faRightFromBracket} />
-                        Logout
+                      <span className="nav-link">
+                        <FontAwesomeIcon icon={faRightFromBracket} /> Logout
                       </span>
                     </button>
                   </li>
@@ -77,12 +74,10 @@ const Navbar = () => {
                     <button
                       type="button"
                       className="btn btn-outline-secondary btn-sm ms-2"
-                      onClick={(e) => setStatus(!token)}
                     >
-                      <span className="nav-link" href="#">
-                        <FontAwesomeIcon icon={faRightToBracket} />
-                        Login
-                      </span>
+                      <Link to="/login" className="nav-link">
+                        <FontAwesomeIcon icon={faRightToBracket} /> Login
+                      </Link>
                     </button>
                   </li>
                   <li className="nav-item">
@@ -90,22 +85,23 @@ const Navbar = () => {
                       type="button"
                       className="btn btn-outline-secondary btn-sm ms-2"
                     >
-                      <span className="nav-link" href="#">
-                        <FontAwesomeIcon icon={faUserPen} />
-                        Register
-                      </span>
+                      <Link to="/register" className="nav-link">
+                        <FontAwesomeIcon icon={faUserPen} /> Register
+                      </Link>
                     </button>
                   </li>
                 </>
               )}
             </ul>
-            <button
-              className="btn btn-outline-info ms-auto button"
-              type="submit"
-            >
-              <FontAwesomeIcon icon={faCartShopping} />
-              Total: ${total.toLocaleString()}
-            </button>
+            <Link to="/cart">
+              <button
+                className="btn btn-outline-info ms-auto button"
+                type="button"
+              >
+                <FontAwesomeIcon icon={faCartShopping} />
+                Total: ${total.toLocaleString()}
+              </button>
+            </Link>
           </div>
         </div>
       </nav>

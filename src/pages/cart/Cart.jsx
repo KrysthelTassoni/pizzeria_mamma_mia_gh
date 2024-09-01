@@ -1,5 +1,5 @@
 
-// src/components/cart/Cart.jsx
+
 import React, { useState } from "react";
 import pizzaCart from "../../data/pizzaCart";
 

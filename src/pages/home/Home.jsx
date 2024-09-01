@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from "../header/Header";
-import Gallery from "../gallery/Gallery";
+import Header from "../../components/header/Header";
+import Gallery from "../../components/gallery/Gallery";
 //import pizzas from "../../data/pizza"; 
 
 const Home = () => {
