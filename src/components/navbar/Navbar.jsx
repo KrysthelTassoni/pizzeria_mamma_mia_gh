@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -9,9 +9,11 @@ import {
   faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext"; // Importamos el contexto
 
 const Navbar = () => {
-  const total = 25000; // Total del carrito
+  const { getTotalPrice } = useContext(CartContext); // Consumimos el contexto del carrito
+  const total = getTotalPrice(); // Obtenemos el total del carrito
   const [token, setStatus] = useState(false); // Estado de autenticación
 
   return (
@@ -110,3 +112,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

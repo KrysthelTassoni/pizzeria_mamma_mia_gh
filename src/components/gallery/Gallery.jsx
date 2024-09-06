@@ -1,25 +1,18 @@
-import React from "react";
-import CardPizza from "../card/CardPizza";
+import React from 'react';
+import CardPizza from '../card/CardPizza';
 
-const Gallery = ({ pizzas }) => {
-  
+const Gallery = ({ pizzas, onAddToCart }) => {
   return (
-    <div className="container">
-      <div className="row my-4">
-        {pizzas.map((pizza) => (
-          <div className="col-md-4 mt-4" key={pizza.id}>
-            <CardPizza
-              name={pizza.name}
-              ingredients={pizza.ingredients}
-              price={pizza.price}
-              image={pizza.img}
-            />
-          </div>
-        ))}
-      </div>
+    <div className="row">
+      {pizzas.map((pizza) => (
+        <div key={pizza.id} className="col-md-4 mb-4">
+          <CardPizza pizza={pizza} onAddToCart={onAddToCart} />
+        </div>
+      ))}
     </div>
   );
 };
 
 export default Gallery;
+
 

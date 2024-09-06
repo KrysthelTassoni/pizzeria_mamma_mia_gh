@@ -1,38 +1,29 @@
-import React from "react";
-import "./cardPizza.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faCartShopping, faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
 
-const CardPizza = ({ name, ingredients, price, image }) => {
+const CardPizza = ({ pizza, onAddToCart }) => {
   return (
-    <div className="card">
-      <img src={image} className="card-img-top cardHeight" alt={name} />
-      <div className="card-body">
-        <h4 className="card-title">{name}</h4>
-        <hr />
-        <div className="text-center">
-          <h5>
-            <FontAwesomeIcon icon={faPizzaSlice} /> Ingredientes:
-          </h5>
+    <div className="card shadow-sm">
+      <img src={pizza.img} className="card-img-top" alt={pizza.name} />
+      <div className="card-body d-flex flex-column justify-content-between">
+        <div>
+          <h5 className="card-title">{pizza.name}</h5>
+          {/* <p className="card-text">{pizza.desc}</p> */}
           <ul className="list-unstyled">
-            {ingredients.map((ingredient, index) => (
-              <li key={index} className="mb-1">
-                {ingredient}
-              </li>
+            {pizza.ingredients.map((ingredient, index) => (
+              <li key={index}>&#x2022; {ingredient}</li>
             ))}
           </ul>
         </div>
-        <hr />
-        <h6 className="card-title text-center fs-5">
-          <strong>Precio:</strong> ${price.toLocaleString()}
-        </h6>
-        <div className="text-center">
-          <button type="button" className="btn btn-outline-secondary btn-sm me-5">
-            Ver más <FontAwesomeIcon icon={faEye} />
+        <div className="mt-3">
+          <p className="card-text fw-bold">Precio: ${pizza.price.toLocaleString()}</p>
+          <div className="d-flex justify-content-center">
+          <button
+            className="btn btn-primary w-50 "
+            onClick={() => onAddToCart(pizza)}
+          >
+            Añadir al carrito
           </button>
-          <button type="button" className="btn btn-dark btn-sm">
-            <FontAwesomeIcon icon={faCartShopping} /> Añadir
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -40,4 +31,7 @@ const CardPizza = ({ name, ingredients, price, image }) => {
 };
 
 export default CardPizza;
+
+
+
 
