@@ -1,49 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./pizza.css";
 
 const Pizza = () => {
-  const [pizza, setPizza] = useState(null);
-
-  const obtenerInformacion = async () => {
-    try {
-      const respuesta = await fetch('http://localhost:5000/api/pizzas/p001');
-      const data = await respuesta.json();
-      setPizza(data);
-    } catch (error) {
-      console.error('Error al obtener la pizza:', error);
-    }
-  };
+  const { id } = useParams(); // Obtiene el id desde la URL
+  const [pizza, setPizza] = useState(null); // Estado para almacenar los datos de la pizza
+  const [loading, setLoading] = useState(true); // Estado de carga
+  const [error, setError] = useState(null); // Estado de error
 
   useEffect(() => {
-    obtenerInformacion();
-  }, []);
+    const fetchPizza = async () => {
+      const url = `${import.meta.env.VITE_URL}/${id}`;
+      console.log("Fetching URL:", url);
+      try {
+        const response = await fetch(url);
 
-  if (!pizza) {
-    return <div>Cargando...</div>;
-  }
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Response data:", data);
+        setPizza(data);
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPizza();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="container my-4">
-      <div className="row">
-        <div className="col-md-6">
-          <img src={pizza.img} className="img-fluid" alt={pizza.name} />
-        </div>
-        <div className="col-md-6">
-          <h1>{pizza.name}</h1>
-          <p>{pizza.desc}</p>
-          <h4>
-            <strong>Precio:</strong> ${pizza.price.toLocaleString()}
-          </h4>
-          <h5>Ingredientes:</h5>
-          <ul>
+    <div className="pizza-card">
+      {pizza && (
+        <div className="pizza-details">
+          <h2 className="pizza-name text-primary">{pizza.name}</h2>
+          <p className="pizza-description">{pizza.desc}</p>
+          <img src={pizza.img} alt={pizza.name} className="pizza-image" />
+          <p className="pizza-price">Price: ${pizza.price.toLocaleString()}</p>
+          <h4>Ingredients:</h4>
+          <ul className="pizza-ingredients">
             {pizza.ingredients.map((ingredient, index) => (
               <li key={index}>{ingredient}</li>
             ))}
           </ul>
-          <button className="btn btn-dark mt-3">
-            Añadir al carrito
-          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };

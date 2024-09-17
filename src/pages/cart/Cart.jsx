@@ -1,12 +1,13 @@
-
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { useUser } from "../../context/UserContext";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, getTotalPrice } =
     useContext(CartContext);
+  const { token } = useUser(); // Obtenemos el estado del token desde el UserContext
 
-  // Calcular el total del carrito
+  // Para calcular el total del carrito
   const total = getTotalPrice();
 
   return (
@@ -45,9 +46,7 @@ const Cart = () => {
                     +
                   </button>
                   <span>
-                    ${(
-                      pizza.price * pizza.quantity
-                    ).toLocaleString()}
+                    ${(pizza.price * pizza.quantity).toLocaleString()}
                   </span>
                 </div>
               </li>
@@ -56,7 +55,10 @@ const Cart = () => {
           <hr />
           <div className="d-flex flex-column align-items-end">
             <h3>Total: ${total.toLocaleString()}</h3>
-            <button className="btn btn-success btn-lg mt-2">Pagar</button>
+            {/* Deshabilitar el botón Pagar si el token es false */}
+            <button className="btn btn-success btn-lg mt-2" disabled={!token}>
+              Pagar
+            </button>
           </div>
         </>
       )}
@@ -65,5 +67,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-

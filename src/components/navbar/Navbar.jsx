@@ -1,116 +1,71 @@
-import React, { useState, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-  faPizzaSlice,
-  faRightFromBracket,
-  faCartShopping,
-  faUserPen,
-  faRightToBracket,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { CartContext } from "../../context/CartContext"; // Importamos el contexto
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faPizzaSlice, faRightFromBracket, faCartShopping, faUserPen, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { CartContext } from '../../context/CartContext'; 
+import { useUser } from '../../context/UserContext';
 
 const Navbar = () => {
-  const { getTotalPrice } = useContext(CartContext); // Consumimos el contexto del carrito
-  const total = getTotalPrice(); // Obtenemos el total del carrito
-  const [token, setStatus] = useState(false); // Estado de autenticación
+  const { getTotalPrice } = useContext(CartContext); 
+  const total = getTotalPrice(); 
+  const { token, logout } = useUser(); 
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            Pizzería Mamma Mia!
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm"
-                >
-                  <Link to="/" className="nav-link active">
-                    <FontAwesomeIcon icon={faPizzaSlice} /> Home
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">Pizzería Mamma Mia!</Link>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link active" to="/">
+                <FontAwesomeIcon icon={faPizzaSlice} /> Home
+              </Link>
+            </li>
+            {token ? (
+              <>
+                {/* Si el token es true, mostramos Profile y Logout */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profile">
+                    <FontAwesomeIcon icon={faUser} /> Profile
                   </Link>
-                </button>
-              </li>
-              {token ? (
-                <>
-                  <li className="nav-item">
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary btn-sm ms-2"
-                    >
-                      <Link to="/profile" className="nav-link">
-                        <FontAwesomeIcon icon={faUser} /> Profile
-                      </Link>
-                    </button>
-                  </li>
-                  <li className="nav-item">
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary btn-sm ms-2"
-                      onClick={() => setStatus(!token)}
-                    >
-                      <span className="nav-link">
-                        <FontAwesomeIcon icon={faRightFromBracket} /> Logout
-                      </span>
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary btn-sm ms-2"
-                    >
-                      <Link to="/login" className="nav-link">
-                        <FontAwesomeIcon icon={faRightToBracket} /> Login
-                      </Link>
-                    </button>
-                  </li>
-                  <li className="nav-item">
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary btn-sm ms-2"
-                    >
-                      <Link to="/register" className="nav-link">
-                        <FontAwesomeIcon icon={faUserPen} /> Register
-                      </Link>
-                    </button>
-                  </li>
-                </>
-              )}
-            </ul>
-            <Link to="/cart">
-              <button
-                className="btn btn-outline-info ms-auto button"
-                type="button"
-              >
-                <FontAwesomeIcon icon={faCartShopping} />
-                Total: ${total.toLocaleString()}
-              </button>
-            </Link>
-          </div>
+                </li>
+                <li className="nav-item">
+                  <button className="btn nav-link" onClick={logout}>
+                    <FontAwesomeIcon icon={faRightFromBracket} /> Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                {/* Si el token es false, mostramos Login y Register */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    <FontAwesomeIcon icon={faRightToBracket} /> Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">
+                    <FontAwesomeIcon icon={faUserPen} /> Register
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+          {/* Botón de Total siempre visible */}
+          <Link to="/cart">
+            <button className="btn btn-outline-info">
+              <FontAwesomeIcon icon={faCartShopping} /> Total: ${total.toLocaleString()}
+            </button>
+          </Link>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
 export default Navbar;
+
+
+
 
 
