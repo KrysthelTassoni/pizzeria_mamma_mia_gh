@@ -1,5 +1,3 @@
-// src/pages/home/Home.jsx
-
 import React, { useEffect, useState } from 'react';
 import Header from "../../components/header/Header";
 import Gallery from "../../components/gallery/Gallery";
@@ -10,7 +8,7 @@ const Home = () => {
   const { addToCart } = useCart(); // Usamos el hook para obtener addToCart
 
   const obtenerInformacion = async () => {
-    const respuesta = await fetch("http://localhost:5000/api/pizzas");
+    const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/pizzas`);
     const data = await respuesta.json();
     setPizza(data);
   };

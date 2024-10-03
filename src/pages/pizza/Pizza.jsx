@@ -10,7 +10,7 @@ const Pizza = () => {
 
   useEffect(() => {
     const fetchPizza = async () => {
-      const url = `${import.meta.env.VITE_URL}/${id}`;
+      const url = `${import.meta.env.VITE_API_URL}/pizzas/${id}`;
       console.log("Fetching URL:", url);
       try {
         const response = await fetch(url);
