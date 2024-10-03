@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPizzaSlice, faRightFromBracket, faCartShopping, faUserPen, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
-import { CartContext } from '../../context/CartContext'; 
+import { CartContext } from '../../context/CartContext';
 import { useUser } from '../../context/UserContext';
 
 const Navbar = () => {
-  const { getTotalPrice } = useContext(CartContext); 
-  const total = getTotalPrice(); 
-  const { token, logout } = useUser(); 
+  const { getTotalPrice } = useContext(CartContext);
+  const total = getTotalPrice();
+  const { token, logout } = useUser();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
